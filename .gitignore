@@ -2,3 +2,9 @@ venv/
 __pycache__/
 *.vcd
 .DS_Store
+.idea/AutoChip.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

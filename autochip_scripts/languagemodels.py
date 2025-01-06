@@ -16,8 +16,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import torch
 
 ## MISTRAL
-from mistralai.client import MistralClient
-from mistralai.models.chat_completion import ChatMessage
+# from mistralai.client import MistralClient
+# from mistralai.models.chat_completion import ChatMessage
 
 ## HUMAN INPUT
 import subprocess
@@ -235,31 +235,31 @@ class CodeLlama(AbstractLLM):
         #print('RESPONSE END')
         return responses
 
-class Mistral(AbstractLLM):
-    """Mistral Large Language Model."""
-
-    def __init__(self, model_id="open-mixtral-8x22b"):
-        super().__init__()
-        self.client = MistralClient(api_key=os.environ['MISTRAL_API_KEY'])
-        self.model_id = model_id
-
-    def generate(self, conversation: Conversation, num_candidates=1):
-        messages = []
-        for msg in conversation.get_messages():
-            messages.append(ChatMessage(
-                role=msg["role"],
-                content=msg["content"],
-            ))
-
-        responses = []
-        for n in range(num_candidates):
-            response = self.client.chat(
-                model=self.model_id,
-                messages=messages,
-            )
-            responses.append(response.choices[0].message.content)
-
-        return responses
+# class Mistral(AbstractLLM):
+#     """Mistral Large Language Model."""
+#
+#     def __init__(self, model_id="open-mixtral-8x22b"):
+#         super().__init__()
+#         self.client = MistralClient(api_key=os.environ['MISTRAL_API_KEY'])
+#         self.model_id = model_id
+#
+#     def generate(self, conversation: Conversation, num_candidates=1):
+#         messages = []
+#         for msg in conversation.get_messages():
+#             messages.append(ChatMessage(
+#                 role=msg["role"],
+#                 content=msg["content"],
+#             ))
+#
+#         responses = []
+#         for n in range(num_candidates):
+#             response = self.client.chat(
+#                 model=self.model_id,
+#                 messages=messages,
+#             )
+#             responses.append(response.choices[0].message.content)
+#
+#         return responses
 
 class HumanInput(AbstractLLM):
     """Human Input Large Language Model."""
